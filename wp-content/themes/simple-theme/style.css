@@ -1,0 +1,14 @@
+/*
+Theme Name: Simplest Theme Ever
+Author: Jonathan F
+Author URI: website.com
+Version: 0.1
+Descriction: most basic them possible\
+License: GPLv3
+
+Any other comments can go here
+*/
+body{
+	background-color: grey;
+	font-family: sans-serif;
+}
