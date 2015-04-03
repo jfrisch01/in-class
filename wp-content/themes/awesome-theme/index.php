@@ -6,6 +6,7 @@
 		<?php while( have_posts() ): the_post(); ?>
 
 		<article id="post-<?php the_ID(); ?>" <?php post_class('clearfix'); ?>>
+		
 			<h2 class="entry-title"> 
 				<a href="<?php the_permalink(); ?>"> 
 					<?php the_title(); ?> 
@@ -33,6 +34,19 @@
 		</article><!-- end post -->
 
 		<?php endwhile; ?>
+		
+		<div class="pagination">
+		<?php
+		//check to see if pagenavi plugin is running
+		if(function_exists('wp_pagenavi') && !wp_is_mobile()):
+			wp_pagenavi();
+		else:
+		previous_posts_link('&larr; Newer Posts ¯\_(ツ)_/¯');
+		next_posts_link('Older Posts &rarr;');
+		endif;
+		?>
+		</div>
+
 	<?php else: ?>
 
 	<h2>Sorry, no posts found</h2>
