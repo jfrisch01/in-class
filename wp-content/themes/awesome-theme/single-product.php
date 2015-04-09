@@ -23,14 +23,16 @@ get_header()
 			?>
 
 			<div class="entry-content">
+				<?php the_terms( $post->ID, 'brand', '<h3>Brand: ', '| ', '</h3>' ); ?>
+
 				<?php the_meta(); /* list of ALL custom fields */ ?>
+
+				<?php the_terms( $post->ID, 'feature', '<br />Features: ', ', ', '' ); ?>
 
 				<?php the_content(); ?>
 			</div>
 			
 		</article><!-- end post -->
-
-		<?php comments_template(); ?>
 
 		<?php endwhile; ?>
 
@@ -51,5 +53,5 @@ get_header()
 
 </main><!-- end #content -->
 
-<?php get_sidebar(); //include sidebar.php ?>
+<?php get_sidebar('shop'); //include sidebar.php ?>
 <?php get_footer(); //include footer.php ?>
