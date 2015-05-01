@@ -7,7 +7,15 @@
 
 		<article id="post-<?php the_ID(); ?>" <?php post_class('clearfix'); ?>>
 			
-		<?php the_post_thumbnail( 'big-banner' );  ?>
+		<?php 
+		//run our rad slider plugin if it exists
+		if(function_exists('rad_slider')):
+			rad_slider();
+		else:
+			//show the featured image
+			the_post_thumbnail( 'big-banner' );  
+		endif;
+		?>
 
 			<h2 class="home-quote"> 
 				<a href="<?php the_permalink(); ?>"> 
@@ -30,6 +38,11 @@
 	<p>Try using the search bar instead</p>
 
 	<?php endif;  //end THE LOOP ?>
+
+	<?php awesome_show_products( 6 ); //defined in functions.php ?>
+
+
+
 
 </main><!-- end #content -->
 

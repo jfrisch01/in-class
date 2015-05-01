@@ -15,6 +15,7 @@
  */
 
 // ** MySQL settings - You can get this info from your web host ** //
+if( $_SERVER['HTTP_HOST'] == 'localhost'){
 /** The name of the database for WordPress */
 define('DB_NAME', 'jonathan_wordpress_db');
 
@@ -23,6 +24,20 @@ define('DB_USER', 'jonathan');
 
 /** MySQL database password */
 define('DB_PASSWORD', 'bydesign');
+
+}else{
+		//LIVE SITE CREDENTIALS
+		define('DB_NAME', 'jfrisch_awesome');
+
+		/** MySQL database username */
+		define('DB_USER', 'jfrisch_awesome');
+
+		/** MySQL database password */
+		define('DB_PASSWORD', 'oJ9~B0i1HW4R');
+}
+
+
+
 
 /** MySQL hostname */
 define('DB_HOST', 'localhost');

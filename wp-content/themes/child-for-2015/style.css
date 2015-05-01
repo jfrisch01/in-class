@@ -1,0 +1,29 @@
+/*
+Theme Name: Twenty Fifteen Child Theme
+Theme URI: http://example.com
+Description: just a demo of child theming
+Author: melissa cabral
+Author URI: http://melissacabral.com
+Template: twentyfifteen
+*/
+@import url('../twentyfifteen/style.css');
+
+body{
+	background-color: #5AB1DA;
+}
+.hentry.has-post-thumbnail{
+	padding-top:1em;
+}
+.site-footer .widget{
+	width: 33%;
+	float: left;
+	margin-top: 1em;
+	padding: 0;
+	box-sizing: border-box;
+}
+.site-footer .widget li{
+	list-style-type: none;
+}
+.site-info{
+	clear: both;
+}

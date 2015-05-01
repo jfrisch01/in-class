@@ -73,5 +73,7 @@ function rad_remove_wp_menu( $wp_admin_bar ){
 		'id' 	=> 'contact-me',
 		'title' => 'Contact Me',
 		'href'	=> 'http://melissacabral.com',
+		'parent'=> 'top-secondary', //right side
+		'meta'  => array( 'class' => 'contact-menu-item' ),
 		));
 }

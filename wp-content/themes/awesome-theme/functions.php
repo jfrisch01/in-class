@@ -111,25 +111,91 @@ function awesome_widget_areas(){
 		'after_title' => '</h3>',
 	) );
 }
+/**
+ * Display a set of products with thumbnail images
+ * @param int $number - the number of posts to show
+ */
+function awesome_show_products( $number = 4 ){
+	//custom query to get up to 6 recent products
+	$products_query = new WP_Query( array(
+		'post_type' 		=> 'product', //we registered this in our products plugin
+		'posts_per_page'	=> $number,	
+	) );
+	if( $products_query->have_posts() ):
+	 ?>
+
+	<section class="latest-products">
+		<h2>Newest Products in the shop:</h2>
+		<ul>
+			<?php while( $products_query->have_posts() ): 
+				$products_query->the_post();
+			?>
+			<li>
+				<a href="<?php the_permalink(); ?>">
+					<?php the_post_thumbnail( 'thumbnail' ); ?>
+					<div class="product-info">
+						<h3><?php the_title(); ?></h3>
+						<p><?php the_excerpt(); ?></p>
+					</div>
+				</a>
+			</li>
+			<?php endwhile; ?>
+		</ul>
+	</section>
+	<?php endif; 
+	//prevent clashing with other loops
+	wp_reset_postdata();
+}//end of function
 
 
 
+/**
+ * Exclude a specific category from the blog loop
+ * Example of how to use pre_get_posts
+ */
+//add_action( 'pre_get_posts', 'awesome_hide_category' );
+function awesome_hide_category( $query ){
+	//only if on the main query on the blog
+	if( $query->is_home() && $query->is_main_query() ):
+		$query->set( 'cat', '-1' );
+	endif;
+}
 
+/**
+ * Theme Customization API example - add custom text and link colors
+ */
+add_action( 'customize_register', 'awesome_theme_customizer');
+function awesome_theme_customizer( $wp_customize ){
+	//link color
+	$wp_customize->add_setting( 'awesome_link_color', array(
+		'default' => '#6bcbca',
+	) );
+	//UI for link color
+	$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 
+		'awesome_link_color_picker',
+		array( 
+			'section' => 'colors', //this is one of the default sections, you can DIY
+			'settings' => 'awesome_link_color',
+			'label' => 'Link Color',
+		)
 
+	) );
 
+}
 
-
-
-
+//CSS for customization
+add_action('wp_head', 'awesome_customizer_css' );
+function awesome_customizer_css(){
+	?>
+	<style type="text/css">
+	a{
+		color:<?php echo get_theme_mod( 'awesome_link_color'); ?>; 
+	}
+	</style>
+	<?php
+}
 
 //no close PHP!
-
-
-
-
-
-
-
 
 
 
